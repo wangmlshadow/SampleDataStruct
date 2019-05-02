@@ -66,7 +66,7 @@ int main(void)
 }
 
 /*
-Êä³ö£º
+Outputï¼š
 Init..
 Length = 10
 Not Empty!
