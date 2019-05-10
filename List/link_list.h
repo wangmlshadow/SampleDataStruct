@@ -61,7 +61,7 @@ public:
 	bool GetNode(int pos, LNode **node);
 
 	// 返回指定data在链表中第一次出现的位置
-	bool LocateNode(ElemType ele, LNode *node);
+	bool LocateNode(ElemType ele, LNode **node);
 
 	// 在指定位置插入后一个结点，但若pos为0是表示在链表头插入一个结点
 	bool LListInsert(int pos, LNode *node);
@@ -84,3 +84,4 @@ public:
 private:
 	LNode *head;
 };
+

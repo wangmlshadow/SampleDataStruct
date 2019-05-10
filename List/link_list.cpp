@@ -29,14 +29,14 @@ bool LinkList::GetNode(int pos, LNode **node)
 	return true;
 }
 
-bool LinkList::LocateNode(ElemType ele, LNode *node)
+bool LinkList::LocateNode(ElemType ele, LNode **node)
 {
 	LNode *curNode = head;
 	while (curNode->next != nullptr) {
 		curNode = curNode->next;
 
 		if (curNode->data == ele) {
-			node = curNode;
+			*node = curNode;
 			return true;
 		}
 	}
