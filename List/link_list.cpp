@@ -46,7 +46,7 @@ bool LinkList::LocateNode(ElemType ele, LNode *node)
 
 bool LinkList::LListInsert(int pos, LNode *node)
 {
-	// ²åÈëÎ»ÖÃ´íÎó
+	// æ’å…¥ä½ç½®é”™è¯¯
 	if (pos < 0 || pos > this->LListLength())
 		return false;
     
@@ -69,15 +69,15 @@ bool LinkList::LListDelete(int pos)
 	if (pos <1 || pos > this->LListLength())
 		return false;
 
-	if (pos == 1) {     // É¾³ıÍ·½áµã
+	if (pos == 1) {     // åˆ é™¤å¤´ç»“ç‚¹
 		LNode *temp = head;
-		this->LListSetHead(temp->next);
+		head = temp->next;
 		delete(temp);
 	}
 	else {
 		LNode *temp_1 = nullptr; 
 		LNode *temp_2 = nullptr;
-		this->GetNode(pos - 1, &temp_1);  // »ñÈ¡±»É¾³ı½áµãµÄÇ°Ò»¸ö½áµã
+		this->GetNode(pos - 1, &temp_1);  // è·å–è¢«åˆ é™¤ç»“ç‚¹çš„å‰ä¸€ä¸ªç»“ç‚¹
 		temp_2 = temp_1->next;
 		temp_1->next = temp_2->next;
 		delete(temp_2);
@@ -86,7 +86,7 @@ bool LinkList::LListDelete(int pos)
 	return true;
 }
 
-// É¾³ı½áµãÁ¢¼´ÊÍ·Å½áµãËùÕ¼ÓÃµÄ¿Õ¼ä£¬±»·µ»ØµÄ½ö½öÊÇ±»É¾³ı½áµãµÄĞÅÏ¢
+// åˆ é™¤ç»“ç‚¹ç«‹å³é‡Šæ”¾ç»“ç‚¹æ‰€å ç”¨çš„ç©ºé—´ï¼Œè¢«è¿”å›çš„ä»…ä»…æ˜¯è¢«åˆ é™¤ç»“ç‚¹çš„ä¿¡æ¯
 bool LinkList::LListDelete(int pos, LNode *node)
 {
 	if (pos <1 || pos > this->LListLength())
@@ -136,7 +136,7 @@ bool LinkList::LListAddNodes(int cnt)
 	LNode *curNode = head;
 
 	if (curNode != nullptr) {
-		// ÕÒµ½Á´±íÎ²½áµã
+		// æ‰¾åˆ°é“¾è¡¨å°¾ç»“ç‚¹
 		while (curNode->next != nullptr) {
 			curNode = curNode->next;
 		}
