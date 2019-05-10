@@ -46,13 +46,13 @@ bool LinkList::LocateNode(ElemType ele, LNode *node)
 
 bool LinkList::LListInsert(int pos, LNode *node)
 {
-	// æ’å…¥ä½ç½®é”™è¯¯
+	// ²åÈëÎ»ÖÃ´íÎó
 	if (pos < 0 || pos > this->LListLength())
 		return false;
     
 	if (pos == 0) {
 		node->next = head;
-		this->LListSetHead(node);
+		head = node;
 	}
 	else {
 		LNode *temp = nullptr;
@@ -69,7 +69,7 @@ bool LinkList::LListDelete(int pos)
 	if (pos <1 || pos > this->LListLength())
 		return false;
 
-	if (pos == 1) {     // åˆ é™¤å¤´ç»“ç‚¹
+	if (pos == 1) {     // É¾³ıÍ·½áµã
 		LNode *temp = head;
 		head = temp->next;
 		delete(temp);
@@ -77,7 +77,7 @@ bool LinkList::LListDelete(int pos)
 	else {
 		LNode *temp_1 = nullptr; 
 		LNode *temp_2 = nullptr;
-		this->GetNode(pos - 1, &temp_1);  // è·å–è¢«åˆ é™¤ç»“ç‚¹çš„å‰ä¸€ä¸ªç»“ç‚¹
+		this->GetNode(pos - 1, &temp_1);  // »ñÈ¡±»É¾³ı½áµãµÄÇ°Ò»¸ö½áµã
 		temp_2 = temp_1->next;
 		temp_1->next = temp_2->next;
 		delete(temp_2);
@@ -86,7 +86,7 @@ bool LinkList::LListDelete(int pos)
 	return true;
 }
 
-// åˆ é™¤ç»“ç‚¹ç«‹å³é‡Šæ”¾ç»“ç‚¹æ‰€å ç”¨çš„ç©ºé—´ï¼Œè¢«è¿”å›çš„ä»…ä»…æ˜¯è¢«åˆ é™¤ç»“ç‚¹çš„ä¿¡æ¯
+// É¾³ı½áµãÁ¢¼´ÊÍ·Å½áµãËùÕ¼ÓÃµÄ¿Õ¼ä£¬±»·µ»ØµÄ½ö½öÊÇ±»É¾³ı½áµãµÄĞÅÏ¢
 bool LinkList::LListDelete(int pos, LNode *node)
 {
 	if (pos <1 || pos > this->LListLength())
@@ -94,7 +94,6 @@ bool LinkList::LListDelete(int pos, LNode *node)
 
 	if (pos == 1) {     
 		LNode *temp = head;
-		//this->LListSetHead(temp->next);
 		head = temp->next;
 		node->data = temp->data;
 		node->next = temp->next;
@@ -136,7 +135,7 @@ bool LinkList::LListAddNodes(int cnt)
 	LNode *curNode = head;
 
 	if (curNode != nullptr) {
-		// æ‰¾åˆ°é“¾è¡¨å°¾ç»“ç‚¹
+		// ÕÒµ½Á´±íÎ²½áµã
 		while (curNode->next != nullptr) {
 			curNode = curNode->next;
 		}
@@ -161,7 +160,7 @@ bool LinkList::LListAddNodes(int cnt)
 		int temp;
 		std::cin >> temp;
 		LNode *node = new LNode(temp);
-		LListSetHead(node);
+		head = node;
 		curNode = node;
 
 		for (int i = 0; i < cnt - 1; i++) {
