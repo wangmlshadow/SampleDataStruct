@@ -4,7 +4,7 @@
 int LinkList::LListLength()
 {
 	int cnt = 0;
-	LNode *node = this->LListHead();
+	LNode *node = head;
 
 	while (node != nullptr) {
 		cnt++;
@@ -18,7 +18,7 @@ bool LinkList::GetNode(int pos, LNode **node)
 	if (pos > this->LListLength() || pos < 1)
 		return false;
 
-	LNode *cur = this->LListHead();
+	LNode *cur = head;
 
 	for (int i = 2; i <= pos; i++) {
 		cur = cur->next;
@@ -31,7 +31,7 @@ bool LinkList::GetNode(int pos, LNode **node)
 
 bool LinkList::LocateNode(ElemType ele, LNode *node)
 {
-	LNode *curNode = this->LListHead();
+	LNode *curNode = head;
 	while (curNode->next != nullptr) {
 		curNode = curNode->next;
 
@@ -51,7 +51,7 @@ bool LinkList::LListInsert(int pos, LNode *node)
 		return false;
     
 	if (pos == 0) {
-		node->next = this->LListHead();
+		node->next = head;
 		this->LListSetHead(node);
 	}
 	else {
@@ -70,7 +70,7 @@ bool LinkList::LListDelete(int pos)
 		return false;
 
 	if (pos == 1) {     // 删除头结点
-		LNode *temp = this->LListHead();
+		LNode *temp = head;
 		this->LListSetHead(temp->next);
 		delete(temp);
 	}
@@ -93,8 +93,9 @@ bool LinkList::LListDelete(int pos, LNode *node)
 		return false;
 
 	if (pos == 1) {     
-		LNode *temp = this->LListHead();
-		this->LListSetHead(temp->next);
+		LNode *temp = head;
+		//this->LListSetHead(temp->next);
+		head = temp->next;
 		node->data = temp->data;
 		node->next = temp->next;
 		delete(temp);
@@ -115,7 +116,7 @@ bool LinkList::LListDelete(int pos, LNode *node)
 
 void LinkList::LListTraverse()
 {
-	LNode *curNode = this->LListHead();
+	LNode *curNode = head;
 
 	while (curNode != nullptr) {
 		std::cout << curNode->data << std::endl;
@@ -132,7 +133,7 @@ bool LinkList::LListAddNodes(int cnt)
 	else if (cnt == 0)
 		return true;
 
-	LNode *curNode = this->LListHead();
+	LNode *curNode = head;
 
 	if (curNode != nullptr) {
 		// 找到链表尾结点
@@ -183,7 +184,7 @@ bool LinkList::LListAddNodes(int cnt)
 void LinkList::LListDestory()
 {
 	//std::cout << "Destory!" << endl;
-	LNode *cur = this->LListHead();
+	LNode *cur = head;
 
 	if (!cur)
 		return;
