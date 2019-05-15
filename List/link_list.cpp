@@ -32,15 +32,15 @@ bool LinkList::GetNode(int pos, LNode **node)
 bool LinkList::LocateNode(ElemType ele, LNode **node)
 {
 	LNode *curNode = head;
-	while (curNode->next != nullptr) {
-		curNode = curNode->next;
-
+	while (curNode != nullptr) {
 		if (curNode->data == ele) {
 			*node = curNode;
 			return true;
 		}
-	}
 
+		curNode = curNode->next;
+	}
+	*node = nullptr;
 	return false;
 }
 
@@ -141,7 +141,7 @@ bool LinkList::LListAddNodes(int cnt)
 		}
 
 		for (int i = 0; i < cnt; i++) {
-			int temp;
+			ElemType temp;
 			std::cin >> temp;
 			LNode *node = new LNode(temp);
 
@@ -157,7 +157,7 @@ bool LinkList::LListAddNodes(int cnt)
 		}
 	}
 	else {
-		int temp;
+		ElemType temp;
 		std::cin >> temp;
 		LNode *node = new LNode(temp);
 		head = node;
@@ -200,4 +200,57 @@ void LinkList::LListDestory()
 		else
 			break;
 	}
+}
+
+bool LinkList::LListNodeIsInList(LNode *node)
+{
+	LNode *cur = head;
+	
+	while (cur != nullptr) {
+		if (cur == node) {
+			return true;
+		}
+		cur = cur->next;
+	}
+
+	return false;
+}
+
+bool LinkList::LListNodeIsInList(LNode *node, int *pos)
+{
+	LNode *cur = head;
+	int cnt = 0;
+
+	while (cur != nullptr) {
+		cnt++;
+		if (cur == node) {
+			*pos = cnt;
+			return true;
+		}
+		cur = cur->next;
+	}
+
+	return false;
+}
+
+bool LinkList::LListPrNode(LNode *node, LNode **p)
+{
+	// 可以使用LListNodeIsInList()和GetNode()实现，比较简单，但相比下面的实现，所需代价大约为下面实现的两倍
+	if (head == node)  // 头结点无前驱结点
+		return false;
+	
+	LNode *pr = head;
+	LNode *cur = head->next;
+
+	while (cur != nullptr) {
+		if (cur == node) {
+			*p = pr;
+			return true;
+		}
+
+		pr = cur;
+		cur = cur->next;
+	}
+
+	return false;
 }

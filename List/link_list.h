@@ -81,6 +81,15 @@ public:
 	// 销毁链表，释放所有结点资源
 	void LListDestory();
 
+	// 查询某个节点是否在此链表中
+	bool LListNodeIsInList(LNode *node);
+
+	// 查询某个节点是否在此链表中，并返回其位置所在
+	bool LListNodeIsInList(LNode *node, int *pos);
+
+	// 获取指定结点的前一个结点
+	bool LListPrNode(LNode *node, LNode **p);
+
 private:
 	LNode *head;
 };

@@ -1,59 +1,59 @@
-#include "CircularList.h"
+#include "DoubleLinkedList.h"
 /*
 int main()
 {
-	CircularList list(5);
+	DoubleLinkedList list(5);
 
-	int len = list.CListLength();
+	int len = list.DListLength();
 	std::cout << "InitLen = " << len << std::endl;
 
-	if (list.CListEmpty())
+	if (list.DListEmpty())
 		std::cout << "Empty List!" << std::endl;
 
 	std::cout << std::endl << "First Traverse: " << std::endl;
 
-	list.CListTraverse();
+	list.DListTraverse();
 
 	std::cout << std::endl << "Insert two Node!" << std::endl;
 
-	LNode *node = new LNode(0);
+	DuLNode *node = new DuLNode(0, nullptr, nullptr);
 
 	if (!node)
 		std::cout << "new Error!" << std::endl;
 
-	LNode *node_2 = new LNode(6);
+	DuLNode *node_2 = new DuLNode(6, nullptr, nullptr);
 
 	if (!node_2)
 		std::cout << "new Error!" << std::endl;
 
-	list.CListInsert(0, node);
-	list.CListInsert(6, node_2);
+	list.DListInsert(0, node);
+	list.DListInsert(6, node_2);
 
-	len = list.CListLength();
+	len = list.DListLength();
 	std::cout << "CurLen = " << len << std::endl;
 
 	std::cout << std::endl << "Second Traverse: " << std::endl;
-	list.CListTraverse();
+	list.DListTraverse();
 
 	std::cout << "Get Node's Data!" << std::endl;
-	LNode *node_pos_3 = nullptr;
+	DuLNode *node_pos_3 = nullptr;
 	list.GetNode(3, &node_pos_3);
 
 	std::cout << "node_pos_3: " << "data = " << node_pos_3->data << std::endl;
 
-	LNode node_del;
-	if (list.CListDelete(3, &node_del)) {
+	DuLNode node_del;
+	if (list.DListDelete(3, &node_del)) {
 		std::cout << "Delete Node: " << "data = " << node_del.data << std::endl;
 	}
 
-	len = list.CListLength();
+	len = list.DListLength();
 	std::cout << "CurLen = " << len << std::endl;
 
 	std::cout << std::endl << "Third Traverse: " << std::endl;
-	list.CListTraverse();
+	list.DListTraverse();
 
 	ElemType locate = 4;
-	LNode *lnode = nullptr;
+	DuLNode *lnode = nullptr;
 
 	if (list.LocateNode(locate, &lnode))
 		std::cout << std::endl << "The number " << locate << " in the list" << std::endl;
